@@ -1,7 +1,7 @@
 # ZenEdge DEFEND stack — cwd = a zenedge-backend worktree (`just zen-defend`).
 # sol: GPT-5.6 Sol architect/validator/fusion writer (ChatGPT Pro plan, xhigh by Andrew's request)
 # glm: GLM-5.3 primary/Main — raw-chat host and the /fh-auto-validate BUILDER (z.ai coding plan)
-# k3:  Kimi K3 (Kimi coding plan) · deep: DeepSeek V4 Pro (API key — the one granted metered exception)
+# k3:  Kimi K3 (Kimi coding plan) · pro/flash: DeepSeek V4 Pro + V4 Flash (API key — the one granted metered exception)
 # Every slot appends Dan's communication contract, then the ZenEdge defend rules (paths relative to this file).
 - name: sol
   model: openai-codex/gpt-5.6-sol
@@ -29,4 +29,18 @@
     - ../../system_prompt_fixing_opus_5_great_communication.md
     - ../../zenedge/prompts/ZENEDGE_HOUSE_RULES.md
 
-# DEEPSEEK_PLACEHOLDER — enabled by `just zen-enable-deepseek` once `pi --list-models deepseek` shows the id.
+- name: pro
+  model: deepseek/deepseek-v4-pro
+  thinking: high
+  color: "#F472B6"
+  append_system_prompt:
+    - ../../system_prompt_fixing_opus_5_great_communication.md
+    - ../../zenedge/prompts/ZENEDGE_HOUSE_RULES.md
+
+- name: flash
+  model: deepseek/deepseek-v4-flash
+  thinking: medium
+  color: "#A3E635"
+  append_system_prompt:
+    - ../../system_prompt_fixing_opus_5_great_communication.md
+    - ../../zenedge/prompts/ZENEDGE_HOUSE_RULES.md

@@ -11,8 +11,9 @@ First job: multi-model, multi-provider red-team and remediation of the zenedge-b
 | `sol` | `openai-codex/gpt-5.6-sol` xhigh | ARCHITECT: validator, fusion writer, plan merger | ChatGPT Pro plan |
 | `glm` | `zai/glm-5.3` high | primary/Main: raw-chat host and `/fh-auto-validate` builder | z.ai coding plan |
 | `k3` | `kimi-coding/k3` medium | builder; Main of the attack stack (it ran w1–w2) | Kimi coding plan |
-| `deep` | `deepseek/<catalog id>` | builder | API key — the one granted metered exception (`~/code/AGENTS.md`) |
-| `terra` | `openai-codex/gpt-5.6-terra` (5-slot stack only) | builder | ChatGPT Pro plan |
+| `pro` | `deepseek/deepseek-v4-pro` high (medium in attack) | builder | API key — the one granted metered exception (`~/code/AGENTS.md`) |
+| `flash` | `deepseek/deepseek-v4-flash` medium | builder | same key; cheapest slot |
+| `terra` | `openai-codex/gpt-5.6-terra` (Terra variant only, replaces `pro`) | builder | ChatGPT Pro plan |
 
 No Fable slot. Pi can log into Claude Max, but pi's docs state third-party harness use bills to Anthropic extra usage per token, and we do not risk the Anthropic accounts. Fable runs outside the loop in Claude Code, reviewing `/tmp/fusion-harness-*` artifacts. To add it later: `pi` → `/login` → Claude, then one `fable` architect slot in the YAML.
 
@@ -45,13 +46,13 @@ Prompts live in `zenedge/prompts/csv-import/` (`README.md` there has the order t
 
 | Recipe | Does |
 |---|---|
-| `just zen-preflight [defend\|attack\|defend5]` | auth per provider, child-visible models, no `.env`, worktree/branch/venv, pack boundary, verdict runner, test DB. PASS/FAIL lines, nonzero on any FAIL. |
-| `just zen-defend [pi args]` / `zen-defend5` | launch the defend stack in the worktree |
+| `just zen-preflight [defend\|attack\|terra]` | auth per provider, child-visible models, no `.env`, worktree/branch/venv, pack boundary, verdict runner, test DB. PASS/FAIL lines, nonzero on any FAIL. |
+| `just zen-defend [pi args]` / `zen-defend-terra` | launch the 5-slot defend stack (or the Terra variant with one DeepSeek slot) in the worktree |
 | `just zen-attack [pi args]` | launch the attack stack in the pack |
 | `just zen-verdicts <wave> [--file X.csv] [--verbose]` | judge a wave with the real pipeline from the worktree. Overwrites `verdicts/<wave>/`; for a smoke, copy a file into `outbox/_smoke/` and judge `_smoke`. |
 | `just zen-prompt N` | prompt N → clipboard |
 | `just zen-transcribe` | re-transcribe Dan's v2 video (`yt-digest`) |
-| `just zen-enable-deepseek [id] [thinking]` | replace the `DEEPSEEK_PLACEHOLDER` line in every ZenEdge stack once `pi --list-models deepseek` lists the id |
+| `just zen-enable-deepseek [pro-id] [flash-id]` | replace the `DEEPSEEK_*_PLACEHOLDER` lines in every ZenEdge stack with live Pro + Flash slots (ids must be in `pi --list-models deepseek`) |
 
 ## Where things land
 
@@ -66,4 +67,4 @@ Runbook: `~/code/zenedge-recovery` (`bootstrap-repos.sh` clones this fork; keys 
 
 ## Cost notes
 
-Sol at xhigh is the expensive seat by tokens but plan-billed; the harness model bar (`/fh on`) shows context %, tps and cost per slot. DeepSeek is the only slot that bills real dollars; keep it at `medium` in the attack stack and watch its row. GPT-5.6 input pricing doubles past ~280k context on the API, which is why the plan path (`openai-codex`, 372k ceiling) stays the rule.
+Sol at xhigh is the expensive seat by tokens but plan-billed; the harness model bar (`/fh on`) shows context %, tps and cost per slot. The two DeepSeek slots are the only ones that bill real dollars (off-peak and cache pricing keep them cheap); Pro runs `high` in defend and `medium` in attack, Flash `medium` everywhere. Watch their rows. GPT-5.6 input pricing doubles past ~280k context on the API, which is why the plan path (`openai-codex`, 372k ceiling) stays the rule.

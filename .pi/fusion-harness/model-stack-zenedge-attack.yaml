@@ -28,4 +28,18 @@
     - ../../system_prompt_fixing_opus_5_great_communication.md
     - ../../zenedge/prompts/ZENEDGE_ATTACK_RULES.md
 
-# DEEPSEEK_PLACEHOLDER — enabled by `just zen-enable-deepseek` once `pi --list-models deepseek` shows the id.
+- name: pro
+  model: deepseek/deepseek-v4-pro
+  thinking: medium
+  color: "#F472B6"
+  append_system_prompt:
+    - ../../system_prompt_fixing_opus_5_great_communication.md
+    - ../../zenedge/prompts/ZENEDGE_ATTACK_RULES.md
+
+- name: flash
+  model: deepseek/deepseek-v4-flash
+  thinking: medium
+  color: "#A3E635"
+  append_system_prompt:
+    - ../../system_prompt_fixing_opus_5_great_communication.md
+    - ../../zenedge/prompts/ZENEDGE_ATTACK_RULES.md

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # zen-preflight — prove the ZenEdge fusion harness can launch before spending a token.
-# Usage: zen-preflight.sh [defend|attack|defend5]   (default: defend)
+# Usage: zen-preflight.sh [defend|attack|terra]   (default: defend)
 # Prints one PASS:/FAIL: line per check, exits nonzero on any FAIL (same convention as the harness gates).
 set -uo pipefail
 MODE="${1:-defend}"
@@ -9,9 +9,9 @@ ZEN_WT="${ZEN_WT:-$HOME/code/zenedge-backend-fusion}"
 ZEN_PACK="${ZEN_PACK:-$HOME/code/options-red-teaming}"
 case "$MODE" in
   defend)  YAML="$FH/.pi/fusion-harness/model-stack-zenedge.yaml";  CWD="$ZEN_WT" ;;
-  defend5) YAML="$FH/.pi/fusion-harness/model-stack-zenedge-5.yaml"; CWD="$ZEN_WT" ;;
+  terra)   YAML="$FH/.pi/fusion-harness/model-stack-zenedge-terra.yaml"; CWD="$ZEN_WT" ;;
   attack)  YAML="$FH/.pi/fusion-harness/model-stack-zenedge-attack.yaml"; CWD="$ZEN_PACK" ;;
-  *) echo "FAIL: unknown mode '$MODE' — use defend|defend5|attack"; exit 2 ;;
+  *) echo "FAIL: unknown mode '$MODE' — use defend|terra|attack"; exit 2 ;;
 esac
 fails=0
 pass() { echo "PASS: $*"; }

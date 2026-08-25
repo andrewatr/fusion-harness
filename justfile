@@ -51,13 +51,13 @@ ZEN_VERDICTS := home_directory() / "code/redteam-harness/run_verdicts.py"
 zen-preflight MODE="defend":
     {{justfile_directory()}}/zenedge/scripts/zen-preflight.sh {{MODE}}
 
-# DEFEND: full stack inside the zenedge-backend worktree (white-box). sol architect · glm Main · k3 · deep.
+# DEFEND: full 5-slot stack inside the zenedge-backend worktree (white-box). sol architect · glm Main · k3 · deepseek pro · deepseek flash.
 zen-defend *ARGS:
     cd {{ZEN_WT}} && pi -e {{FH_EXT}} --fh-config {{ZEN_STACKS}}/model-stack-zenedge.yaml {{ARGS}}
 
-# DEFEND, 5 slots (adds GPT-5.6 Terra).
-zen-defend5 *ARGS:
-    cd {{ZEN_WT}} && pi -e {{FH_EXT}} --fh-config {{ZEN_STACKS}}/model-stack-zenedge-5.yaml {{ARGS}}
+# DEFEND, Terra variant: sol · glm · k3 · terra · deepseek flash (one metered slot instead of two).
+zen-defend-terra *ARGS:
+    cd {{ZEN_WT}} && pi -e {{FH_EXT}} --fh-config {{ZEN_STACKS}}/model-stack-zenedge-terra.yaml {{ARGS}}
 
 # ATTACK: blind red team inside the pack directory (cwd is the boundary). Never point this at the backend.
 zen-attack *ARGS:
@@ -75,6 +75,6 @@ zen-prompt N:
 zen-transcribe:
     yt-digest 'https://www.youtube.com/watch?v=rqZHR-hRllI'
 
-# Turn the DeepSeek slot on in every ZenEdge stack once `pi --list-models deepseek` lists a model.
-zen-enable-deepseek MODEL="deepseek-v4-pro" THINKING="high":
-    {{justfile_directory()}}/zenedge/scripts/zen-enable-deepseek.sh {{MODEL}} {{THINKING}}
+# Turn the DeepSeek Pro + Flash slots on in every ZenEdge stack (ids must appear in `pi --list-models deepseek`).
+zen-enable-deepseek PRO="deepseek-v4-pro" FLASH="deepseek-v4-flash":
+    {{justfile_directory()}}/zenedge/scripts/zen-enable-deepseek.sh {{PRO}} {{FLASH}}
