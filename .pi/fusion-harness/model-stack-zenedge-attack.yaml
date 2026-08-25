@@ -1,0 +1,31 @@
+# ZenEdge ATTACK stack — cwd = the blind pack `~/code/options-red-teaming` (`just zen-attack`).
+# The pack holds only BRIEF/specs/outbox/verdicts. Slots append the communication contract and the
+# ATTACK rules only — never the defend rules (those point at the implementation map).
+# k3 is primary: it ran waves w1–w2 as the lone red-teamer and keeps that seat as Main.
+- name: sol
+  model: openai-codex/gpt-5.6-sol
+  thinking: xhigh
+  architect: true
+  color: "#F59E0B"
+  append_system_prompt:
+    - ../../system_prompt_fixing_opus_5_great_communication.md
+    - ../../zenedge/prompts/ZENEDGE_ATTACK_RULES.md
+
+- name: k3
+  model: kimi-coding/k3
+  thinking: medium
+  primary: true
+  color: "#34D399"
+  append_system_prompt:
+    - ../../system_prompt_fixing_opus_5_great_communication.md
+    - ../../zenedge/prompts/ZENEDGE_ATTACK_RULES.md
+
+- name: glm
+  model: zai/glm-5.3
+  thinking: medium
+  color: "#22D3EE"
+  append_system_prompt:
+    - ../../system_prompt_fixing_opus_5_great_communication.md
+    - ../../zenedge/prompts/ZENEDGE_ATTACK_RULES.md
+
+# DEEPSEEK_PLACEHOLDER — enabled by `just zen-enable-deepseek` once `pi --list-models deepseek` shows the id.

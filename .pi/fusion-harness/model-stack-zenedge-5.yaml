@@ -1,0 +1,37 @@
+# ZenEdge DEFEND stack, 5 slots — the 4-slot defend stack plus GPT-5.6 Terra (ChatGPT Pro plan, no extra cost).
+# Regenerated from model-stack-zenedge.yaml by `just zen-enable-deepseek`; edit that file, not this one.
+- name: sol
+  model: openai-codex/gpt-5.6-sol
+  thinking: xhigh
+  architect: true
+  color: "#F59E0B"
+  append_system_prompt:
+    - ../../system_prompt_fixing_opus_5_great_communication.md
+    - ../../zenedge/prompts/ZENEDGE_HOUSE_RULES.md
+
+- name: glm
+  model: zai/glm-5.3
+  thinking: high
+  primary: true
+  color: "#22D3EE"
+  append_system_prompt:
+    - ../../system_prompt_fixing_opus_5_great_communication.md
+    - ../../zenedge/prompts/ZENEDGE_HOUSE_RULES.md
+
+- name: k3
+  model: kimi-coding/k3
+  thinking: medium
+  color: "#34D399"
+  append_system_prompt:
+    - ../../system_prompt_fixing_opus_5_great_communication.md
+    - ../../zenedge/prompts/ZENEDGE_HOUSE_RULES.md
+
+- name: terra
+  model: openai-codex/gpt-5.6-terra
+  thinking: medium
+  color: "#A78BFA"
+  append_system_prompt:
+    - ../../system_prompt_fixing_opus_5_great_communication.md
+    - ../../zenedge/prompts/ZENEDGE_HOUSE_RULES.md
+
+# DEEPSEEK_PLACEHOLDER — enabled by `just zen-enable-deepseek` once `pi --list-models deepseek` shows the id.
