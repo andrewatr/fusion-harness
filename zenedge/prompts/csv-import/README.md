@@ -13,3 +13,7 @@ Run in numeric order. Each prompt maps to one harness command and one cwd. Copy 
 | 6 | `06-auto-validate-fix-defect.md` | `/fh-auto-validate --max-validations 5` | `just zen-defend` | one defect fixed behind a gate that was RED at baseline, with an inline-CSV regression test |
 
 Repeat 6 per defect; each fix is a branch → PR to `main`. Then the next wave: 3 → 4 → verdicts → 5 → 6.
+
+## Beyond CSV import
+
+`../ZENEDGE_FUSION_HARNESS_TARGETS.md` ranks the next ten backend surfaces (registry parity, dedupe arbitration, RLS isolation, migration drift, timezone, aggregation, options multipliers, excursions, background writes, agent JSON uploads) with the failure hypotheses and the oracle for each. Prompts for those targets are written per-wave from that registry.

@@ -69,6 +69,10 @@ Runbook: `~/code/zenedge-recovery` (`bootstrap-repos.sh` clones this fork; keys 
 
 Sol at xhigh is the expensive seat by tokens but plan-billed; the harness model bar (`/fh on`) shows context %, tps and cost per slot. The two DeepSeek slots are the only ones that bill real dollars (off-peak and cache pricing keep them cheap); Pro runs `high` in defend and `medium` in attack, Flash `medium` everywhere. Watch their rows. GPT-5.6 input pricing doubles past ~280k context on the API, which is why the plan path (`openai-codex`, 372k ceiling) stays the rule.
 
+## What to point it at next
+
+`zenedge/ZENEDGE_FUSION_HARNESS_TARGETS.md` — ten ranked backend targets beyond CSV import, each with its failure hypotheses, the oracle a gate would assert, whether a blind wave is possible, and a recommended order. It also lists the surfaces to fix directly without a wave, and the anti-targets where no oracle exists.
+
 ## Headless runs
 
 `just zen-headless <defend|attack|terra> <seconds> "/fh-opinion …"` drives the same extension over pi's RPC mode (no TUI): panels print to stdout, raw events append to `fh-rpc-events.jsonl` in the cwd, artifacts land in `/tmp/fusion-harness-*/` as usual. The 2026-08-25 smoke run (prompt 01, sol/glm/k3) took 19 min and its artifacts are preserved under `~/code/redteam-harness/_private/fusion-runs/2026-08-25-opinion-01/`.
