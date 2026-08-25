@@ -78,3 +78,7 @@ zen-transcribe:
 # Turn the DeepSeek Pro + Flash slots on in every ZenEdge stack (ids must appear in `pi --list-models deepseek`).
 zen-enable-deepseek PRO="deepseek-v4-pro" FLASH="deepseek-v4-flash":
     {{justfile_directory()}}/zenedge/scripts/zen-enable-deepseek.sh {{PRO}} {{FLASH}}
+
+# Headless run for scripts/Claude Code: just zen-headless defend 1800 "/fh-opinion <prompt>"  (attack uses the pack cwd)
+zen-headless MODE SECS +CMD:
+    @[ "{{MODE}}" = attack ] && cd {{ZEN_PACK}} || cd {{ZEN_WT}}; python3 {{justfile_directory()}}/zenedge/scripts/fh-rpc.py "$PWD" {{ZEN_STACKS}}/model-stack-zenedge{{ if MODE == "attack" { "-attack" } else if MODE == "terra" { "-terra" } else { "" } }}.yaml {{SECS}} "{{CMD}}"
